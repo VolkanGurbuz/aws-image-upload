@@ -12,8 +12,8 @@ import java.util.UUID;
 @Getter
 @Setter
 public class UserProfile {
-  private UUID userProfileId;
-  private String username;
+  private final UUID userProfileId;
+  private final String username;
   private String userProfileImageLink; // s3 key will be used
 
   @Override

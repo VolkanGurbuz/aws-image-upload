@@ -25,12 +25,14 @@ const UserProfiles = () => {
     return userProfiles.map((userProfile, index) => {
 
         return (<div key={index}>
-                {/* todo: profile image*/}
+                {userProfile.userProfileId ?
+                    <img
+                        src={`http://localhost:8081/api/v1/user-profile/${userProfile.userProfileId}/image/download`}/> : null}
                 <br/>
                 <br/>
                 <h1>{userProfile.username}</h1>
                 <p>{userProfile.userProfileId}</p>
-                <Dropzone userProfileId={userProfile.userProfileId}/>
+                <Dropzone {...userProfile}/>
                 <br/>
             </div>
 
@@ -41,7 +43,7 @@ const UserProfiles = () => {
 function Dropzone({userProfileId}) {
     const onDrop = useCallback(acceptedFiles => {
         const file = acceptedFiles[0];
-        console.log(file);
+        console.log(userProfileId);
 
         const formData = new FormData();
         formData.append("file", file);
